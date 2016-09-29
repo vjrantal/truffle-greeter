@@ -6,32 +6,32 @@ function setStatus(message) {
   status.innerHTML = message;
 };
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
+function refreshGreeting() {
+  var greeter = Greeter.deployed();
 
-  meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
+  greeter.greet.call({from: account}).then(function(value) {
+    var greeting_element = document.getElementById("greeting");
+    greeting_element.innerHTML = value.valueOf();
   }).catch(function(e) {
     console.log(e);
-    setStatus("Error getting balance; see log.");
+    setStatus("Error getting greeting; see log.");
   });
 };
 
-function sendCoin() {
-  var meta = MetaCoin.deployed();
-
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
+function kill() {
+  var greeter = Greeter.deployed();
 
   setStatus("Initiating transaction... (please wait)");
 
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
-    setStatus("Transaction complete!");
-    refreshBalance();
+  greeter.kill.call({from: account}).then(function(result) {
+    if (result === false) {
+      setStatus("Only the owner can kill the Greeter!");
+    } else {
+      setStatus("Killed the Greeter!");
+    }
   }).catch(function(e) {
     console.log(e);
-    setStatus("Error sending coin; see log.");
+    setStatus("Error killing; see log.");
   });
 };
 
@@ -50,6 +50,6 @@ window.onload = function() {
     accounts = accs;
     account = accounts[0];
 
-    refreshBalance();
+    refreshGreeting();
   });
 }
