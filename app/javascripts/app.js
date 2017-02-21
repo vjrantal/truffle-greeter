@@ -22,12 +22,8 @@ function kill() {
   setStatus("Initiating transaction... (please wait)");
 
   Greeter.deployed().then(function(greeter) {
-    greeter.kill.call({from: account}).then(function(result) {
-      if (result === false) {
-        setStatus("Only the owner can kill the Greeter!");
-      } else {
-        setStatus("Killed the Greeter!");
-      }
+    greeter.kill.call({from: account}).then(function() {
+      setStatus("Called kill from the Greeter");
     }).catch(function(e) {
       console.log(e);
       setStatus("Error killing; see log.");
