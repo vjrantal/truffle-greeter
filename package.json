@@ -1,0 +1,22 @@
+{
+  "name": "truffle-greeter",
+  "version": "1.0.0",
+  "description": "A project adapting the Greeter sample from https://www.ethereum.org/greeter to leverage [Truffle](http://truffleframework.com).",
+  "main": "truffle.js",
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjrantal/truffle-greeter.git"
+  },
+  "author": "Ville Rantala",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vjrantal/truffle-greeter/issues"
+  },
+  "homepage": "https://github.com/vjrantal/truffle-greeter",
+  "devDependencies": {
+    "truffle-default-builder": "^2.0.0"
+  }
+}
